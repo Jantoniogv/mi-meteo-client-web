@@ -62,8 +62,6 @@ const MeteoTableList = (props) => {
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
 
-  const columns = getColums(typeTime, typeQuery);
-
   const [meteoDates, setMeteoDates] = useState([]);
 
   /*   useEffect(() => {
@@ -86,7 +84,7 @@ const MeteoTableList = (props) => {
 
   return (
     <Table
-      columns={columns}
+      columns={getColums(typeTime, typeQuery)}
       dataSource={meteoDates}
       rowKey={() => {
         return uuidv4();
@@ -113,33 +111,35 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "_id",
       key: "_id",
       render: (date) => {
-        return () => {
-          if (typeTime.all) {
-            console.log("aqui llega");
-            return <b>{new Date(date.date).toLocaleString()}</b>;
-          } else if (typeTime.hour) {
-            return (
-              <b>
-                {new Date(date.date).toLocaleDateString()} {date.hour}:00:00
-              </b>
-            );
-          } else if (typeTime.day) {
-            <b>{new Date(date.date).toLocaleDateString()}</b>;
-          } else if (typeTime.mouth) {
+        if (typeTime.all) {
+          return <b>{new Date(date.date).toLocaleString()}</b>;
+        } else if (typeTime.hour) {
+          //console.log("aqui llega");
+          return (
+            <b>
+              {new Date(date.date).toLocaleDateString()} {date.hour}:00:00
+            </b>
+          );
+        } else if (typeTime.day) {
+          return <b>{new Date(date.date).toLocaleDateString()}</b>;
+        } else if (typeTime.mouth) {
+          return (
             <b>
               {new Date(date.date).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "numeric",
               })}
-            </b>;
-          } else if (typeTime.year) {
+            </b>
+          );
+        } else if (typeTime.year) {
+          return (
             <b>
               {new Date(date.date).toLocaleDateString(undefined, {
                 year: "numeric",
               })}
-            </b>;
-          }
-        };
+            </b>
+          );
+        }
       },
     },
   ];
@@ -285,7 +285,7 @@ const getColums = (typeTime, typeQuery) => {
     columns = date.concat(water);
   }
 
-  console.log(columns);
+  //console.log(JSON.stringify(columns));
   //console.log(typeTime);
   //console.log(typeQuery.temp);
 

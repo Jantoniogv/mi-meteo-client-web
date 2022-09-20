@@ -170,7 +170,7 @@ export function updateUserApi(token, user, userId) {
 const getReq = (typeTime, typeQuery) => {
   let req;
 
-  console.log(typeTime.hour);
+  //console.log(typeTime.hour);
   //console.log(typeQuery);
 
   if (
@@ -278,7 +278,7 @@ const getReq = (typeTime, typeQuery) => {
     req = req.concat("time=y");
   }
 
-  console.log(req);
+  //console.log(req);
 
   return req;
 };
