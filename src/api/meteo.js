@@ -57,8 +57,13 @@ export function singInApi(data) {
     });
 } */
 
-export function getLast24MeteoApi(typeTime, typeQuery) {
-  const req = getReq(typeTime, typeQuery);
+export function getLast24MeteoApi(
+  typeTime,
+  typeQuery,
+  startInterval,
+  endInterval
+) {
+  const req = getReq(typeTime, typeQuery, startInterval, endInterval);
 
   const url = `${basePath}/${apiVersion}/last-24-meteo-dates${req}`;
   const params = {
@@ -167,7 +172,7 @@ export function updateUserApi(token, user, userId) {
 }
  */
 
-const getReq = (typeTime, typeQuery) => {
+const getReq = (typeTime, typeQuery, startInterval, endInterval) => {
   let req;
 
   //console.log(typeTime.hour);
@@ -267,17 +272,20 @@ const getReq = (typeTime, typeQuery) => {
   }
 
   if (typeTime.all) {
-    req = req.concat("time=a");
+    req = req.concat("&time=a");
   } else if (typeTime.hour) {
-    req = req.concat("time=h");
+    req = req.concat("&time=h");
   } else if (typeTime.day) {
-    req = req.concat("time=d");
+    req = req.concat("&time=d");
   } else if (typeTime.mouth) {
-    req = req.concat("time=m");
+    req = req.concat("&time=m");
   } else if (typeTime.year) {
-    req = req.concat("time=y");
+    req = req.concat("&time=y");
   }
 
+  req = req.concat(
+    `&startInterval=${startInterval}&endInterval=${endInterval}`
+  );
   //console.log(req);
 
   return req;

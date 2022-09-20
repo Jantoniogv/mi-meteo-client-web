@@ -26,6 +26,8 @@ const MeteoDataCard = () => {
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1)}
+        startInterval={Date.now() - 1286400000}
+        endInterval={Date.now()}
 
         /* dateStart={Date.now() - 86400000}
         dateEnd={Date.now()}

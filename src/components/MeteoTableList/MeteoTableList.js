@@ -57,7 +57,7 @@ import { getLast24MeteoApi } from "../../api/meteo";
 ]; */
 
 const MeteoTableList = (props) => {
-  const { typeTime, typeQuery } = props;
+  const { typeTime, typeQuery, startInterval, endInterval } = props;
 
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
@@ -71,12 +71,14 @@ const MeteoTableList = (props) => {
   }, []); */
 
   useEffect(() => {
-    getLast24MeteoApi(typeTime, typeQuery).then((response) => {
-      setMeteoDates(response.meteoDates);
-    });
+    getLast24MeteoApi(typeTime, typeQuery, startInterval, endInterval).then(
+      (response) => {
+        setMeteoDates(response.meteoDates);
+      }
+    );
   }, []);
 
-  // console.log(meteoDates);
+  console.log(meteoDates);
 
   const pagination = {
     defaultPageSize: 12,
