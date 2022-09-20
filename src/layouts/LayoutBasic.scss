@@ -1,0 +1,29 @@
+@import "../scss/index.scss";
+
+.layout-basic {
+  transition: margin-left 0.2s;
+
+  &__header {
+    background-color: rgb(96, 207, 226) !important;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100vw;
+    display: flex;
+    padding: 5px !important;
+    height: 65px;
+  }
+
+  &__content {
+    //position: absolute;
+    margin: 0 auto;
+    min-height: calc(100vh - 65px);
+    padding: 90px 0px 25px 0px;
+  }
+
+  &__footer {
+    padding: 5px !important;
+  }
+}
