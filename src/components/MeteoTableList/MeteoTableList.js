@@ -2,59 +2,11 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Table } from "antd";
 
-import { getLast24MeteoApi } from "../../api/meteo";
+import "./MeteoTableList.scss";
 
-/* const columns = [
-  {
-    title: "Fecha",
-    dataIndex: "_id",
-    key: "_id",
-    render: (date) => {
-      return (
-        <b>
-          {new Date(date.date).toLocaleDateString()} {date.hour}:00:00
-        </b>
-      );
-    },
-  },
-  {
-    title: "Temperatura",
-    dataIndex: "temp",
-    key: "temp",
-    // width: "500",
-    render: (text) => {
-      return <b>{text + " ºC"}</b>;
-    },
-  },
-  {
-    title: "Humedad ambiental",
-    dataIndex: "hum",
-    key: "hum",
-    render: (text) => {
-      return <b>{text + " HR"}</b>;
-    },
-  },
-  {
-    title: "Presión atmosferica",
-    dataIndex: "pressure",
-    key: "pressure",
-    render: (text) => {
-      return <b>{text + " HP"}</b>;
-    },
-  },
-  {
-    title: "Lluvia",
-    dataIndex: "water",
-    key: "water",
-    render: (text) => {
-      return (
-        <b>
-          {text + " l/m"} <sup>2</sup>{" "}
-        </b>
-      );
-    },
-  },
-]; */
+import IconTemp from "../../assets/img/icon-temp.png";
+
+import { getLast24MeteoApi } from "../../api/meteo";
 
 const MeteoTableList = (props) => {
   const { typeTime, typeQuery, startInterval, endInterval } = props;
@@ -119,24 +71,43 @@ const getColums = (typeTime, typeQuery) => {
           //console.log("aqui llega");
           return (
             <b>
-              {new Date(date.date).toLocaleDateString()} {date.hour}:00:00
+              {new Date(
+                date.year,
+                date.month - 1,
+                date.day,
+                date.hour
+              ).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+              })}
             </b>
           );
         } else if (typeTime.day) {
-          return <b>{new Date(date.date).toLocaleDateString()}</b>;
-        } else if (typeTime.mouth) {
           return (
             <b>
-              {new Date(date.date).toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "numeric",
-              })}
+              {date.day}/{date.month}/{date.year}
+            </b>
+          );
+        } else if (typeTime.month) {
+          return (
+            <b>
+              {new Date(date.year, date.month - 1).toLocaleDateString(
+                undefined,
+                {
+                  year: "numeric",
+                  month: "numeric",
+                }
+              )}
             </b>
           );
         } else if (typeTime.year) {
           return (
             <b>
-              {new Date(date.date).toLocaleDateString(undefined, {
+              {new Date(date.year).toLocaleDateString(undefined, {
                 year: "numeric",
               })}
             </b>
@@ -152,7 +123,12 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "temp",
       key: "temp",
       render: (text) => {
-        return <b>{text + " ºC"}</b>;
+        return (
+          <span>
+            <img className="icon-temp" src={IconTemp} alt="icon temp" />
+            <b>{text.toFixed(1) + " ºC"}</b>{" "}
+          </span>
+        );
       },
     },
   ];
@@ -163,7 +139,7 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "hum",
       key: "hum",
       render: (text) => {
-        return <b>{text + " HR"}</b>;
+        return <b>{text.toFixed() + " HR"}</b>;
       },
     },
   ];
@@ -174,7 +150,7 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "pressure",
       key: "pressure",
       render: (text) => {
-        return <b>{text + " HP"}</b>;
+        return <b>{text.toFixed() + " HP"}</b>;
       },
     },
   ];
@@ -194,97 +170,22 @@ const getColums = (typeTime, typeQuery) => {
     },
   ];
 
-  if (
-    typeQuery.temp &&
-    typeQuery.hum &&
-    typeQuery.pressure &&
-    typeQuery.water
-  ) {
-    columns = date.concat(temp).concat(hum).concat(pressure).concat(water);
-  } else if (
-    typeQuery.temp &&
-    !typeQuery.hum &&
-    !typeQuery.pressure &&
-    !typeQuery.water
-  ) {
-    columns = date.concat(temp);
-  } else if (
-    typeQuery.temp &&
-    typeQuery.hum &&
-    !typeQuery.pressure &&
-    !typeQuery.water
-  ) {
-    columns = date.concat(temp).concat(hum);
-  } else if (
-    typeQuery.temp &&
-    typeQuery.hum &&
-    typeQuery.pressure &&
-    !typeQuery.water
-  ) {
-    columns = date.concat(temp).concat(hum).concat(pressure);
-  } else if (
-    typeQuery.temp &&
-    !typeQuery.hum &&
-    typeQuery.pressure &&
-    !typeQuery.water
-  ) {
-    columns = date.concat(temp).concat(pressure);
-  } else if (
-    typeQuery.temp &&
-    !typeQuery.hum &&
-    !typeQuery.pressure &&
-    typeQuery.water
-  ) {
-    columns = date.concat(temp).concat(water);
-  } else if (
-    !typeQuery.temp &&
-    typeQuery.hum &&
-    !typeQuery.pressure &&
-    !typeQuery.water
-  ) {
-    columns = date.concat(hum);
-  } else if (
-    !typeQuery.temp &&
-    typeQuery.hum &&
-    typeQuery.pressure &&
-    !typeQuery.water
-  ) {
-    columns = date.concat(hum).concat(pressure);
-  } else if (
-    !typeQuery.temp &&
-    typeQuery.hum &&
-    typeQuery.pressure &&
-    typeQuery.water
-  ) {
-    columns = date.concat(hum).concat(pressure).concat(water);
-  } else if (
-    !typeQuery.temp &&
-    typeQuery.hum &&
-    !typeQuery.pressure &&
-    typeQuery.water
-  ) {
-    columns = date.concat(hum).concat(water);
-  } else if (
-    !typeQuery.temp &&
-    !typeQuery.hum &&
-    typeQuery.pressure &&
-    !typeQuery.water
-  ) {
-    columns = date.concat(pressure);
-  } else if (
-    !typeQuery.temp &&
-    !typeQuery.hum &&
-    typeQuery.pressure &&
-    typeQuery.water
-  ) {
-    columns = date.concat(pressure).concat(water);
-  } else if (
-    !typeQuery.temp &&
-    !typeQuery.hum &&
-    !typeQuery.pressure &&
-    typeQuery.water
-  ) {
-    columns = date.concat(water);
+  columns = date;
+
+  if (typeQuery.temp) {
+    columns = columns.concat(temp);
+  }
+
+  if (typeQuery.hum) {
+    columns = columns.concat(hum);
+  }
+
+  if (typeQuery.pressure) {
+    columns = columns.concat(pressure);
+  }
+
+  if (typeQuery.water) {
+    columns = columns.concat(water);
   }
 
   //console.log(JSON.stringify(columns));

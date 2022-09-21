@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+//import { useState, useEffect } from "react";
 
 import { Layout } from "antd";
 
@@ -14,15 +14,9 @@ export default function LayoutBasic(props) {
 
   return (
     <Layout>
-      <Layout
-        className="layout-basic"
-        //style={{ marginLeft: menuCollapsed ? "80px" : "200px" }}
-      >
+      <Layout className="layout-basic">
         <Header className="layout-basic__header">
-          <MenuTop
-          //menuCollapsed={menuCollapsed}
-          //setMenuCollapsed={setMenuCollapsed}
-          />
+          <MenuTop />
         </Header>
         <Content className="layout-basic__content">{children}</Content>
         <Footer className="layout-basic__footer">Jose Antonio</Footer>

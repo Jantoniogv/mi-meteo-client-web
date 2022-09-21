@@ -173,12 +173,36 @@ export function updateUserApi(token, user, userId) {
  */
 
 const getReq = (typeTime, typeQuery, startInterval, endInterval) => {
-  let req;
+  let req = "?";
 
   //console.log(typeTime.hour);
   //console.log(typeQuery);
 
-  if (
+  if (typeQuery.temp) {
+    req = req.concat("temp=1");
+  } else {
+    req = req.concat("temp=0");
+  }
+
+  if (typeQuery.hum) {
+    req = req.concat("&hum=1");
+  } else {
+    req = req.concat("&hum=0");
+  }
+
+  if (typeQuery.pressure) {
+    req = req.concat("&pressure=1");
+  } else {
+    req = req.concat("&pressure=0");
+  }
+
+  if (typeQuery.water) {
+    req = req.concat("&water=1");
+  } else {
+    req = req.concat("&water=0");
+  }
+
+  /* if (
     typeQuery.temp &&
     typeQuery.hum &&
     typeQuery.pressure &&
@@ -269,7 +293,7 @@ const getReq = (typeTime, typeQuery, startInterval, endInterval) => {
     typeQuery.water
   ) {
     req = "?temp=0&hum=0&pressure=1&water=1";
-  }
+  } */
 
   if (typeTime.all) {
     req = req.concat("&time=a");
