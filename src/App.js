@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import { routes } from "./config/routes";
-
-//import AuthProvider from "./providers/AuthProvider";
 
 import "./App.scss";
 
 function App() {
-  //const { user, isLoading } = useAuth();
+  const [location, setLocation] = useState("iznajar");
+
   return (
     <div className="app">
       <Router>
@@ -16,8 +16,8 @@ function App() {
               key={index}
               path={route.path}
               element={
-                <route.layout>
-                  <route.component />
+                <route.layout location={location} setLocation={setLocation}>
+                  <route.component location={location} />
                 </route.layout>
               }
             />

@@ -1,15 +1,17 @@
+import { useEffect } from "react";
+
 import { Select } from "antd";
 import MeteoLogo from "../../assets/img/logo-meteo-subbetica.png";
 
 import "./MenuTop.scss";
 
 export default function MenuTop(props) {
-  // const { menuCollapsed, setMenuCollapsed } = props;
+  const { setLocation } = props;
 
   const { Option } = Select;
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    setLocation(value);
   };
 
   return (

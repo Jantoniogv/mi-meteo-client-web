@@ -1,10 +1,10 @@
-import MeteoTableList from "../MeteoTableList";
-import MeteoCurrentData from "../MeteoCurrentData/MeteoCurrentData";
-
-import { Card } from "antd";
 import { useState } from "react";
+import { Card } from "antd";
 
 import "./MeteoDataCard.scss";
+
+import MeteoTableList from "../MeteoTableList";
+import MeteoCurrentData from "../MeteoCurrentData/MeteoCurrentData";
 
 const tabList = [
   {
@@ -17,22 +17,22 @@ const tabList = [
   },
 ];
 
-const MeteoDataCard = () => {
+const MeteoDataCard = (props) => {
+  const { location } = props;
+
+  console.log(location);
+
   const [activeTabKey1, setActiveTabKey1] = useState("current");
 
   const contentList = {
-    current: <MeteoCurrentData />,
+    current: <MeteoCurrentData location={location} />,
     lastHours: (
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1)}
-        startInterval={Date.now() - 1286400000}
-        endInterval={Date.now()}
-
-        /* dateStart={Date.now() - 86400000}
-        dateEnd={Date.now()}
-        timeType={timeType.hours} */
-        //queryType={}
+        startInterval={Date.now() - 11286400000}
+        endInterval={Date.now() + 11286400000}
+        location={location}
       />
     ),
   };
@@ -82,10 +82,6 @@ const typeQuery = (t, h, p, w) => {
   };
 
   return typeQuery;
-};
-
-const calcTimeStamp = (dateStart, dateEnd) => {
-  return Date.now(dateEnd) - Date.now(dateStart);
 };
 
 export default MeteoDataCard;

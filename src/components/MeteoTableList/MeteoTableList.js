@@ -9,26 +9,31 @@ import IconTemp from "../../assets/img/icon-temp.png";
 import { getLast24MeteoApi } from "../../api/meteo";
 
 const MeteoTableList = (props) => {
-  const { typeTime, typeQuery, startInterval, endInterval } = props;
+  const { typeTime, typeQuery, startInterval, endInterval, location } = props;
 
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
 
-  const [meteoDates, setMeteoDates] = useState([]);
-
-  /*   useEffect(() => {
-    getLast24MeteoApi().then((response) => {
-      setMeteoDates(response.meteoDates);
-    });
-  }, []); */
+  const [meteoDates, setMeteoDates] = useState([
+    {
+      temp: "no data",
+      hum: "no data",
+      pressure: "no data",
+      water: "no data",
+    },
+  ]);
 
   useEffect(() => {
-    getLast24MeteoApi(typeTime, typeQuery, startInterval, endInterval).then(
-      (response) => {
-        setMeteoDates(response.meteoDates);
-      }
-    );
-  }, []);
+    getLast24MeteoApi(
+      typeTime,
+      typeQuery,
+      startInterval,
+      endInterval,
+      location
+    ).then((response) => {
+      setMeteoDates(response.meteoDates);
+    });
+  }, [location]);
 
   console.log(meteoDates);
 
