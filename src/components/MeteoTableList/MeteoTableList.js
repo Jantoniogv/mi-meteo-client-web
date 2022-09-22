@@ -14,14 +14,7 @@ const MeteoTableList = (props) => {
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
 
-  const [meteoDates, setMeteoDates] = useState([
-    {
-      temp: "no data",
-      hum: "no data",
-      pressure: "no data",
-      water: "no data",
-    },
-  ]);
+  const [meteoDates, setMeteoDates] = useState([]);
 
   useEffect(() => {
     getLast24MeteoApi(
