@@ -13,7 +13,6 @@
 
 # misc
 /src/config.js
-/src/api/config.js
 .DS_Store
 .env.local
 .env.development.local
