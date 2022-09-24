@@ -30,8 +30,8 @@ const MeteoDataCard = (props) => {
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1)}
-        startInterval={Date.now() - 11286400000}
-        endInterval={Date.now() + 11286400000}
+        startInterval={Date.now() - 211286400000}
+        endInterval={Date.now()}
         location={location}
       />
     ),

@@ -1,4 +1,4 @@
-import { apiVersion, basePath } from "./config";
+import { apiVersion, basePath } from "../config";
 
 export function getCurrentMeteoApi(location) {
   const url = `${basePath}/${apiVersion}/current-meteo-dates?location=${location}`;
