@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { routes } from "./config/routes";
+import { routes } from "./routes/routes";
 
 import "./App.scss";
 
