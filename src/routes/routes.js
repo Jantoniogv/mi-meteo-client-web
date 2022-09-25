@@ -8,7 +8,7 @@ import NotFound from "../pages/NotFound";
 
 const routesClient = [
   {
-    path: "/meteodates",
+    path: "/",
     layout: LayoutBasic,
     component: MeteoDates,
   },
