@@ -15,6 +15,10 @@ const tabList = [
     key: "lastHours",
     tab: "Ultimas 24 horas",
   },
+  {
+    key: "lastTenDays",
+    tab: "Ultimos diez das",
+  },
 ];
 
 const MeteoDataCard = (props) => {
@@ -30,7 +34,16 @@ const MeteoDataCard = (props) => {
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1)}
-        startInterval={Date.now() - 211286400000}
+        startInterval={Date.now() - 86400000}
+        endInterval={Date.now()}
+        location={location}
+      />
+    ),
+    lastTenDays: (
+      <MeteoTableList
+        typeTime={typeTime(0, 1, 0, 0, 0, 0)}
+        typeQuery={typeQuery(1, 1, 1, 1)}
+        startInterval={Date.now() - 864000000}
         endInterval={Date.now()}
         location={location}
       />
@@ -44,7 +57,7 @@ const MeteoDataCard = (props) => {
   return (
     <div className="meteo-card">
       <Card
-        title="Estacion meteorológica de lucena"
+        title={`Estacion meteorológica de ${location}`}
         style={{
           overflow: "auto",
         }}

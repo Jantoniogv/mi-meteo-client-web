@@ -12,16 +12,22 @@ const MeteoCurrentData = (props) => {
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
 
-  const initValue = {
-    temp: "no data",
-    hum: "no data",
-    pressure: "no data",
-    water: "no data",
-  };
-
-  const [meteoDates, setMeteoDates] = useState([initValue]);
+  const [meteoDates, setMeteoDates] = useState([
+    {
+      temp: "no data",
+      hum: "no data",
+      pressure: "no data",
+      water: "no data",
+    },
+  ]);
 
   useEffect(() => {
+    const initValue = {
+      temp: "no data",
+      hum: "no data",
+      pressure: "no data",
+      water: "no data",
+    };
     getCurrentMeteoApi(location).then((response) => {
       if (!response.meteoDates) {
         setMeteoDates([initValue]);
