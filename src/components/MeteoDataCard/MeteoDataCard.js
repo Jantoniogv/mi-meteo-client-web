@@ -13,11 +13,11 @@ const tabList = [
   },
   {
     key: "lastHours",
-    tab: "Ultimas 24 horas",
+    tab: "Últimas 24 horas",
   },
   {
-    key: "lastTenDays",
-    tab: "Ultimos diez das",
+    key: "last30Days",
+    tab: "Últimos 30 días",
   },
 ];
 
@@ -39,11 +39,11 @@ const MeteoDataCard = (props) => {
         location={location}
       />
     ),
-    lastTenDays: (
+    last30Days: (
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1)}
-        startInterval={Date.now() - 864000000}
+        startInterval={Date.now() - 2592000000}
         endInterval={Date.now()}
         location={location}
       />
