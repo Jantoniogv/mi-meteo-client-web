@@ -26,7 +26,7 @@ const MeteoTableList = (props) => {
     ).then((response) => {
       setMeteoDates(response.meteoDates);
     });
-  }, [location]);
+  }, [typeTime, typeQuery, startInterval, endInterval, location]);
 
   console.log(meteoDates);
 
