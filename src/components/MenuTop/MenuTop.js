@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { Select } from "antd";
-import MeteoLogo from "../../assets/img/logo-meteo-subbetica.png";
+import MeteoLogo from "../../assets/img/logo-mi-meteo-web.png";
 
 import "./MenuTop.scss";
 
