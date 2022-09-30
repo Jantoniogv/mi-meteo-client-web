@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import MeteoSpin from "../MeteoSpin";
 
 import "./MeteoCurrentData.scss";
 
@@ -42,6 +43,20 @@ const MeteoCurrentData = (props) => {
 
   return (
     <div className="sing-in__content-tabs">
+      {meteoDates[0].temp === "no data" ? (
+        <MeteoSpin />
+      ) : (
+        <CurrentData meteoDates={meteoDates} />
+      )}
+    </div>
+  );
+};
+
+function CurrentData(props) {
+  const meteoDates = props.meteoDates;
+
+  return (
+    <>
       <h3>Temperatura: {meteoDates[0].temp}ºC</h3>
       <h3>Humedad: {meteoDates[0].hum} HR</h3>
       <h3>Presión atmosferica: {meteoDates[0].pressure} HP</h3>
@@ -51,8 +66,8 @@ const MeteoCurrentData = (props) => {
       <h3>
         Luvia acumulada hoy: 30 l/m<sup>2</sup>
       </h3>
-    </div>
+    </>
   );
-};
+}
 
 export default MeteoCurrentData;

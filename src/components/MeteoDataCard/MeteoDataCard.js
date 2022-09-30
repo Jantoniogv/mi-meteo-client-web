@@ -4,7 +4,9 @@ import { Card } from "antd";
 import "./MeteoDataCard.scss";
 
 import MeteoTableList from "../MeteoTableList";
-import MeteoCurrentData from "../MeteoCurrentData/MeteoCurrentData";
+import MeteoCurrentData from "../MeteoCurrentData";
+
+import MeteoSpin from "../MeteoSpin";
 
 const tabList = [
   {
@@ -22,6 +24,10 @@ const tabList = [
   {
     key: "last12month",
     tab: "Últimos 12 meses",
+  },
+  {
+    key: "customFind",
+    tab: "Busqueda personalizada",
   },
 ];
 
@@ -60,6 +66,16 @@ const MeteoDataCard = (props) => {
         endInterval={Date.now()}
         location={location}
       />
+    ),
+    customFind: (
+      <MeteoSpin />
+      /* <MeteoTableList
+        typeTime={typeTime(0, 0, 0, 0, 1, 0)}
+        typeQuery={typeQuery(1, 1, 1, 1)}
+        startInterval={Date.now()}
+        endInterval={Date.now()}
+        location={location}
+      /> */
     ),
   };
 
