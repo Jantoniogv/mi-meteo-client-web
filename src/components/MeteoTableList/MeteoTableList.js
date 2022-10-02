@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Table } from "antd";
 
+import MeteoSpin from "../MeteoSpin";
+
 import "./MeteoTableList.scss";
 
 import IconTemp from "../../assets/img/icon-temp.png";
@@ -14,7 +16,7 @@ const MeteoTableList = (props) => {
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
 
-  const [meteoDates, setMeteoDates] = useState([]);
+  const [meteoDates, setMeteoDates] = useState(undefined);
 
   useEffect(() => {
     getLast24MeteoApi(
@@ -24,7 +26,12 @@ const MeteoTableList = (props) => {
       endInterval,
       location
     ).then((response) => {
-      setMeteoDates(response.meteoDates);
+      if (!response.meteoDates) {
+        console.log(response);
+        setMeteoDates([]);
+      } else {
+        setMeteoDates(response.meteoDates);
+      }
     });
   }, [typeTime, typeQuery, startInterval, endInterval, location]);
 
@@ -35,19 +42,25 @@ const MeteoTableList = (props) => {
   };
 
   return (
-    <Table
-      columns={getColums(typeTime, typeQuery)}
-      dataSource={meteoDates}
-      rowKey={() => {
-        return uuidv4();
-      }}
-      pagination={pagination}
-      onCell
-      scroll={{
-        x: true,
-      }}
-      scrollToFirstRowOnChange={true}
-    />
+    <>
+      {!meteoDates ? (
+        <MeteoSpin />
+      ) : (
+        <Table
+          columns={getColums(typeTime, typeQuery)}
+          dataSource={meteoDates}
+          rowKey={() => {
+            return uuidv4();
+          }}
+          pagination={pagination}
+          onCell
+          scroll={{
+            x: true,
+          }}
+          scrollToFirstRowOnChange={true}
+        />
+      )}
+    </>
   );
 };
 

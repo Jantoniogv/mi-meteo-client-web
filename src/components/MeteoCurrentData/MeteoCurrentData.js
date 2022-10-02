@@ -15,10 +15,10 @@ const MeteoCurrentData = (props) => {
 
   const [meteoDates, setMeteoDates] = useState([
     {
-      temp: "no data",
-      hum: "no data",
-      pressure: "no data",
-      water: "no data",
+      temp: "load",
+      hum: "load",
+      pressure: "load",
+      water: "load",
     },
   ]);
 
@@ -31,6 +31,7 @@ const MeteoCurrentData = (props) => {
     };
     getCurrentMeteoApi(location).then((response) => {
       if (!response.meteoDates) {
+        console.log(response);
         setMeteoDates([initValue]);
       } else {
         console.log(initValue);
@@ -43,7 +44,7 @@ const MeteoCurrentData = (props) => {
 
   return (
     <div className="sing-in__content-tabs">
-      {meteoDates[0].temp === "no data" ? (
+      {meteoDates[0].temp === "load" ? (
         <MeteoSpin />
       ) : (
         <CurrentData meteoDates={meteoDates} />
