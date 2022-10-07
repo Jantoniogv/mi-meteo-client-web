@@ -58,6 +58,8 @@ function CurrentData(props) {
 
   return (
     <>
+      <h3>Fecha: {meteoDates[0].date}ºC</h3>
+
       <h3>Temperatura: {meteoDates[0].temp}ºC</h3>
       <h3>Humedad: {meteoDates[0].hum} HR</h3>
       <h3>Presión atmosferica: {meteoDates[0].pressure} HP</h3>

@@ -17,6 +17,9 @@
   }
 
   &__content {
+    position: sticky;
+    display: flex;
+    align-items: center;
     //position: absolute;
     margin: 0 auto;
     min-height: calc(100vh - 65px);
@@ -25,5 +28,15 @@
 
   &__footer {
     padding: 5px !important;
+
+    &-web {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    &-license {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }

@@ -16,7 +16,7 @@ const MeteoTableList = (props) => {
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
 
-  const [meteoDates, setMeteoDates] = useState(undefined);
+  const [meteoDates, setMeteoDates] = useState(null);
 
   useEffect(() => {
     getLast24MeteoApi(

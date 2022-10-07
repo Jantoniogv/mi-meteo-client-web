@@ -19,7 +19,13 @@ export default function LayoutBasic(props) {
           <MenuTop setLocation={setLocation} />
         </Header>
         <Content className="layout-basic__content">{children}</Content>
-        <Footer className="layout-basic__footer">Jose Antonio</Footer>
+        <Footer className="layout-basic__footer">
+          <span className="layout-basic__footer-web">Mi meteo web.</span>
+          <span className="layout-basic__footer-license">
+            Esta web no recopila ningún dato y todo su contenido es de dominio
+            publico
+          </span>
+        </Footer>
       </Layout>
     </Layout>
   );
