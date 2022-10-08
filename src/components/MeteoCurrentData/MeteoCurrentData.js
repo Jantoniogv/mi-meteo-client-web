@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Row, Col, Divider } from "antd";
+
 import MeteoSpin from "../MeteoSpin";
 
 import "./MeteoCurrentData.scss";
@@ -54,23 +56,152 @@ const MeteoCurrentData = (props) => {
 };
 
 function CurrentData(props) {
-  const meteoDates = props.meteoDates;
+  const meteoDates = props.meteoDates[0];
 
   return (
     <>
-      <h3>Fecha: {meteoDates[0].date}ºC</h3>
-
-      <h3>Temperatura: {meteoDates[0].temp}ºC</h3>
-      <h3>Humedad: {meteoDates[0].hum} HR</h3>
-      <h3>Presión atmosferica: {meteoDates[0].pressure} HP</h3>
+      {/* <h3>
+        Actualizado a:{" "}
+        {new Date(meteoDates.date).toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })}
+      </h3>
+      <br></br>
       <h3>
-        Lluvia: {meteoDates[0].water} l/m<sup>2</sup>
+        Temperatura:{" "}
+        <span>
+          {meteoDates.temp.toFixed(1) + " ºC"}
+          <img className="icon-temp" src={IconTemp} alt="icon temp" />
+        </span>
+      </h3>
+      <h3>Humedad: {meteoDates.hum.toFixed()} HR</h3>
+      <h3>Presión atmosferica: {meteoDates.pressure.toFixed()} HP</h3>
+      <h3>
+        Lluvia: {meteoDates.water.toFixed(1)} l/m<sup>2</sup>
       </h3>
       <h3>
         Luvia acumulada hoy: 30 l/m<sup>2</sup>
-      </h3>
+      </h3> */}
+
+      <div className="date">
+        <h3 className="h3-data__date">Actualizado a: </h3>
+        <h3 className="h3-value__date">
+          {new Date(meteoDates.date).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          })}
+        </h3>
+      </div>
+
+      <Divider />
+
+      <Row gutter={24}>
+        <Col span={9}>
+          <h3 className="h3-data">Temperatura:</h3>
+        </Col>
+        <Col span={4}>
+          <h3 className="h3-value">
+            {/* <img className="icon-temp" src={IconTemp} alt="icon temp" /> */}
+            {meteoDates.temp.toFixed(1) + " ºC"}
+          </h3>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={9}>
+          <h3 className="h3-data">Humedad:</h3>
+        </Col>
+        <Col span={4}>
+          <h3 className="h3-value">{meteoDates.hum.toFixed() + " %"}</h3>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={9}>
+          <h3 className="h3-data">Presión atmosferica:</h3>
+        </Col>
+        <Col span={4}>
+          <h3 className="h3-value">{meteoDates.pressure.toFixed() + " hPa"}</h3>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={9}>
+          <h3 className="h3-data">Lluvia en los últimos 10 minutos:</h3>
+        </Col>
+        <Col span={4}>
+          <h3 className="h3-value">
+            {meteoDates.water.toFixed()} l/m<sup>2</sup>
+          </h3>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={9}>
+          <h3 className="h3-data">Lluvia acumulada desde las 00:00:</h3>
+        </Col>
+        <Col span={4}>
+          <h3 className="h3-value">
+            {meteoDates.water.toFixed()} l/m<sup>2</sup>
+          </h3>
+        </Col>
+      </Row>
     </>
   );
 }
+
+/* <Row gutter={16}>
+<Col className="gutter-row" span={6}>
+  <div ><h3>
+  Dirección del viento:</h3></div>
+</Col>
+<Col className="gutter-row" span={6}>
+<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
+</Col>
+
+</Row>
+
+<Row gutter={16}>
+<Col className="gutter-row" span={6}>
+  <div ><h3>
+  Vel. media del viento:</h3></div>
+</Col>
+<Col className="gutter-row" span={6}>
+<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
+</Col>
+
+</Row>
+
+<Row gutter={16}>
+<Col className="gutter-row" span={6}>
+  <div ><h3>
+  Vel. max. del viento:</h3></div>
+</Col>
+<Col className="gutter-row" span={6}>
+<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
+</Col>
+
+</Row>
+
+
+<Row gutter={16}>
+<Col className="gutter-row" span={6}>
+  <div ><h3>
+  Vel. min. del viento:</h3></div>
+</Col>
+<Col className="gutter-row" span={6}>
+<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
+</Col>
+
+</Row> */
 
 export default MeteoCurrentData;

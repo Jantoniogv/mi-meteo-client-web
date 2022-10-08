@@ -5,28 +5,30 @@
 
   &__header {
     background-color: rgb(96, 207, 226) !important;
-    position: fixed;
-    z-index: 1;
+    //position: fixed;
+    //z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
     max-width: 100vw;
     display: flex;
     padding: 5px !important;
-    height: 65px;
+    height: 65px !important;
   }
 
   &__content {
-    position: sticky;
+    //position: sticky;
     display: flex;
-    align-items: center;
+    align-items: top center;
     //position: absolute;
     margin: 0 auto;
-    min-height: calc(100vh - 65px);
+    min-height: calc(100vh - 97px) !important;
     padding: 90px 0px 25px 0px;
   }
 
   &__footer {
+    display: grid;
+    grid-template-columns: auto auto;
     padding: 5px !important;
 
     &-web {

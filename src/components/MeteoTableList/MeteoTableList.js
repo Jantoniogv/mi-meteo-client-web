@@ -8,7 +8,7 @@ import "./MeteoTableList.scss";
 
 import IconTemp from "../../assets/img/icon-temp.png";
 
-import { getLast24MeteoApi } from "../../api/meteo";
+import { getFilterMeteoApi } from "../../api/meteo";
 
 const MeteoTableList = (props) => {
   const { typeTime, typeQuery, startInterval, endInterval, location } = props;
@@ -19,7 +19,7 @@ const MeteoTableList = (props) => {
   const [meteoDates, setMeteoDates] = useState(null);
 
   useEffect(() => {
-    getLast24MeteoApi(
+    getFilterMeteoApi(
       typeTime,
       typeQuery,
       startInterval,
@@ -77,16 +77,15 @@ const getColums = (typeTime, typeQuery) => {
       key: "_id",
       render: (date) => {
         if (typeTime.all) {
-          return <b>{new Date(date.date).toLocaleString()}</b>;
+          return (
+            <h3 className="h3-value">{new Date(date.date).toLocaleString()}</h3>
+          );
         } else if (typeTime.hour) {
           //console.log("aqui llega");
           return (
-            <b>
+            <h3 className="h3-value">
               {new Date(
-                date.year,
-                date.month - 1,
-                date.day,
-                date.hour
+                Date.UTC(date.year, date.month - 1, date.day, date.hour)
               ).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "2-digit",
@@ -95,33 +94,39 @@ const getColums = (typeTime, typeQuery) => {
                 minute: "2-digit",
                 second: "2-digit",
               })}
-            </b>
+            </h3>
           );
         } else if (typeTime.day) {
           return (
-            <b>
-              {date.day}/{date.month}/{date.year}
-            </b>
+            <h3 className="h3-value">
+              {new Date(
+                Date.UTC(date.year, date.month - 1, date.day)
+              ).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "numeric",
+                day: "2-digit",
+              })}
+            </h3>
           );
         } else if (typeTime.month) {
           return (
-            <b>
-              {new Date(date.year, date.month - 1).toLocaleDateString(
+            <h3 className="h3-value">
+              {new Date(Date.UTC(date.year, date.month - 1)).toLocaleDateString(
                 undefined,
                 {
                   year: "numeric",
                   month: "numeric",
                 }
               )}
-            </b>
+            </h3>
           );
         } else if (typeTime.year) {
           return (
-            <b>
-              {new Date(date.year).toLocaleDateString(undefined, {
+            <h3 className="h3-value">
+              {new Date(Date.UTC(date.year)).toLocaleDateString(undefined, {
                 year: "numeric",
               })}
-            </b>
+            </h3>
           );
         }
       },
@@ -137,7 +142,7 @@ const getColums = (typeTime, typeQuery) => {
         return (
           <span>
             <img className="icon-temp" src={IconTemp} alt="icon temp" />
-            <b>{text.toFixed(1) + " ºC"}</b>{" "}
+            <h3 className="h3-value">{text.toFixed(1) + " ºC"}</h3>{" "}
           </span>
         );
       },
@@ -150,7 +155,7 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "hum",
       key: "hum",
       render: (text) => {
-        return <b>{text.toFixed() + " HR"}</b>;
+        return <h3 className="h3-value">{text.toFixed() + " HR"}</h3>;
       },
     },
   ];
@@ -161,7 +166,7 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "pressure",
       key: "pressure",
       render: (text) => {
-        return <b>{text.toFixed() + " HP"}</b>;
+        return <h3 className="h3-value">{text.toFixed() + " HP"}</h3>;
       },
     },
   ];
@@ -173,9 +178,9 @@ const getColums = (typeTime, typeQuery) => {
       key: "water",
       render: (text) => {
         return (
-          <b>
+          <h3 className="h3-value">
             {text + " l/m"} <sup>2</sup>{" "}
-          </b>
+          </h3>
         );
       },
     },

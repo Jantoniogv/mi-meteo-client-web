@@ -108,7 +108,7 @@ const typeTime = (a, h, d, w, m, y) => {
     hour: h,
     day: d,
     week: w,
-    mouth: m,
+    month: m,
     year: y,
   };
 

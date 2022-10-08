@@ -28,7 +28,7 @@ export function getCurrentMeteoApi(location) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-export function getLast24MeteoApi(
+export function getFilterMeteoApi(
   typeTime,
   typeQuery,
   startInterval,
@@ -94,7 +94,7 @@ const getReq = (typeTime, typeQuery, startInterval, endInterval, location) => {
     req = req.concat("&time=h");
   } else if (typeTime.day) {
     req = req.concat("&time=d");
-  } else if (typeTime.mouth) {
+  } else if (typeTime.month) {
     req = req.concat("&time=m");
   } else if (typeTime.year) {
     req = req.concat("&time=y");
