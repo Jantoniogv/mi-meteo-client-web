@@ -23,7 +23,7 @@ export default function LayoutBasic(props) {
           <span className="layout-basic__footer-web">Mi meteo web.</span>
           <span className="layout-basic__footer-license">
             Esta web no recopila ningún dato y todo su contenido es de dominio
-            publico
+            publico.
           </span>
         </Footer>
       </Layout>

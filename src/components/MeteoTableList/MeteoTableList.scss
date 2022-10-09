@@ -10,3 +10,27 @@
   font-size: medium;
   color: rgb(85, 85, 85);
 }
+
+@media screen and (max-width: 450px) {
+  .icon-temp {
+    height: 15px;
+    padding: 1px;
+  }
+
+  .h3-value {
+    display: inline;
+    font-weight: 450;
+    font-style: normal;
+    font-size: medium;
+    color: rgb(85, 85, 85);
+    white-space: nowrap;
+
+    &__date-table {
+      font-weight: 450;
+      font-style: normal;
+      font-size: small;
+      color: rgb(85, 85, 85);
+      display: inline;
+    }
+  }
+}

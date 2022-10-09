@@ -11,12 +11,14 @@ import IconTemp from "../../assets/img/icon-temp.png";
 import { getFilterMeteoApi } from "../../api/meteo";
 
 const MeteoTableList = (props) => {
-  const { typeTime, typeQuery, startInterval, endInterval, location } = props;
+  const { typeTime, typeQuery, startInterval, endInterval, location, tab } =
+    props;
 
   /* console.log(typeTime.all);
   console.log(typeQuery.temp); */
 
   const [meteoDates, setMeteoDates] = useState(null);
+  const [tabSelect, setTabSelect] = useState(null);
 
   useEffect(() => {
     getFilterMeteoApi(
@@ -32,8 +34,9 @@ const MeteoTableList = (props) => {
       } else {
         setMeteoDates(response.meteoDates);
       }
+      setTabSelect(tab);
     });
-  }, [typeTime, typeQuery, startInterval, endInterval, location]);
+  }, [typeTime, typeQuery, startInterval, endInterval, location, tab]);
 
   console.log(meteoDates);
 
@@ -43,7 +46,7 @@ const MeteoTableList = (props) => {
 
   return (
     <>
-      {!meteoDates ? (
+      {tabSelect !== tab || !meteoDates ? (
         <MeteoSpin />
       ) : (
         <Table
@@ -78,12 +81,14 @@ const getColums = (typeTime, typeQuery) => {
       render: (date) => {
         if (typeTime.all) {
           return (
-            <h3 className="h3-value">{new Date(date.date).toLocaleString()}</h3>
+            <h3 className="h3-value__date-table">
+              {new Date(date.date).toLocaleString()}
+            </h3>
           );
         } else if (typeTime.hour) {
           //console.log("aqui llega");
           return (
-            <h3 className="h3-value">
+            <h3 className="h3-value__date-table">
               {new Date(
                 Date.UTC(date.year, date.month - 1, date.day, date.hour)
               ).toLocaleDateString(undefined, {
@@ -98,7 +103,7 @@ const getColums = (typeTime, typeQuery) => {
           );
         } else if (typeTime.day) {
           return (
-            <h3 className="h3-value">
+            <h3 className="h3-value__date-table">
               {new Date(
                 Date.UTC(date.year, date.month - 1, date.day)
               ).toLocaleDateString(undefined, {
@@ -110,7 +115,7 @@ const getColums = (typeTime, typeQuery) => {
           );
         } else if (typeTime.month) {
           return (
-            <h3 className="h3-value">
+            <h3 className="h3-value__date-table">
               {new Date(Date.UTC(date.year, date.month - 1)).toLocaleDateString(
                 undefined,
                 {
@@ -122,7 +127,7 @@ const getColums = (typeTime, typeQuery) => {
           );
         } else if (typeTime.year) {
           return (
-            <h3 className="h3-value">
+            <h3 className="h3-value__date-table">
               {new Date(Date.UTC(date.year)).toLocaleDateString(undefined, {
                 year: "numeric",
               })}
@@ -155,7 +160,7 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "hum",
       key: "hum",
       render: (text) => {
-        return <h3 className="h3-value">{text.toFixed() + " HR"}</h3>;
+        return <h3 className="h3-value">{text.toFixed() + " %"}</h3>;
       },
     },
   ];
@@ -166,7 +171,7 @@ const getColums = (typeTime, typeQuery) => {
       dataIndex: "pressure",
       key: "pressure",
       render: (text) => {
-        return <h3 className="h3-value">{text.toFixed() + " HP"}</h3>;
+        return <h3 className="h3-value">{text.toFixed() + " hPa"}</h3>;
       },
     },
   ];
@@ -179,7 +184,7 @@ const getColums = (typeTime, typeQuery) => {
       render: (text) => {
         return (
           <h3 className="h3-value">
-            {text + " l/m"} <sup>2</sup>{" "}
+            {text.toFixed(1) + " l/m"} <sup>2</sup>{" "}
           </h3>
         );
       },
@@ -192,16 +197,16 @@ const getColums = (typeTime, typeQuery) => {
     columns = columns.concat(temp);
   }
 
+  if (typeQuery.water) {
+    columns = columns.concat(water);
+  }
+
   if (typeQuery.hum) {
     columns = columns.concat(hum);
   }
 
   if (typeQuery.pressure) {
     columns = columns.concat(pressure);
-  }
-
-  if (typeQuery.water) {
-    columns = columns.concat(water);
   }
 
   //console.log(JSON.stringify(columns));

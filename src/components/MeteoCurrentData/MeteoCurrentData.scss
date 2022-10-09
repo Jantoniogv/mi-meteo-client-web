@@ -29,3 +29,41 @@
     display: inline;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .icon-temp {
+    height: 15px;
+    padding: 1px;
+  }
+
+  .h3-data {
+    font-weight: 500;
+    font-size: small;
+    font-style: normal;
+    color: rgb(0, 0, 0);
+
+    &__date {
+      font-weight: 500;
+      font-style: normal;
+      font-size: small;
+      color: rgb(0, 0, 0);
+      display: inline;
+    }
+  }
+
+  .h3-value {
+    font-weight: 480;
+    font-style: normal;
+    font-size: small;
+    color: rgb(85, 85, 85);
+
+    &__date {
+      padding-left: 10px;
+      font-weight: 480;
+      font-style: normal;
+      font-size: small;
+      color: rgb(85, 85, 85);
+      display: inline;
+    }
+  }
+}

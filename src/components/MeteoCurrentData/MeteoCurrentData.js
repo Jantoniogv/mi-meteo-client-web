@@ -105,10 +105,10 @@ function CurrentData(props) {
       <Divider />
 
       <Row gutter={24}>
-        <Col span={9}>
+        <Col span={15}>
           <h3 className="h3-data">Temperatura:</h3>
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <h3 className="h3-value">
             {/* <img className="icon-temp" src={IconTemp} alt="icon temp" /> */}
             {meteoDates.temp.toFixed(1) + " ºC"}
@@ -117,28 +117,28 @@ function CurrentData(props) {
       </Row>
 
       <Row gutter={24}>
-        <Col span={9}>
+        <Col span={15}>
           <h3 className="h3-data">Humedad:</h3>
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <h3 className="h3-value">{meteoDates.hum.toFixed() + " %"}</h3>
         </Col>
       </Row>
 
       <Row gutter={24}>
-        <Col span={9}>
+        <Col span={15}>
           <h3 className="h3-data">Presión atmosferica:</h3>
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <h3 className="h3-value">{meteoDates.pressure.toFixed() + " hPa"}</h3>
         </Col>
       </Row>
 
       <Row gutter={24}>
-        <Col span={9}>
+        <Col span={15}>
           <h3 className="h3-data">Lluvia en los últimos 10 minutos:</h3>
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <h3 className="h3-value">
             {meteoDates.water.toFixed()} l/m<sup>2</sup>
           </h3>
@@ -146,62 +146,53 @@ function CurrentData(props) {
       </Row>
 
       <Row gutter={24}>
-        <Col span={9}>
+        <Col span={15}>
           <h3 className="h3-data">Lluvia acumulada desde las 00:00:</h3>
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <h3 className="h3-value">
             {meteoDates.water.toFixed()} l/m<sup>2</sup>
           </h3>
         </Col>
       </Row>
+
+      <Row gutter={24}>
+        <Col span={15}>
+          <h3 className="h3-data">Dirección del viento:</h3>
+        </Col>
+        <Col span={5}>
+          <h3 className="h3-value">{meteoDates.dir_wind}</h3>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={15}>
+          <h3 className="h3-data">Vel. media del viento:</h3>
+        </Col>
+        <Col span={5}>
+          <h3 className="h3-value">{meteoDates.avg_wind} km/h</h3>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={15}>
+          <h3 className="h3-data">Vel. max. del viento:</h3>
+        </Col>
+        <Col span={5}>
+          <h3 className="h3-value">{meteoDates.max_wind} km/h</h3>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={15}>
+          <h3 className="h3-data">Vel. min. del viento:</h3>
+        </Col>
+        <Col span={5}>
+          <h3 className="h3-value">{meteoDates.min_wind} km/h</h3>
+        </Col>
+      </Row>
     </>
   );
 }
-
-/* <Row gutter={16}>
-<Col className="gutter-row" span={6}>
-  <div ><h3>
-  Dirección del viento:</h3></div>
-</Col>
-<Col className="gutter-row" span={6}>
-<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
-</Col>
-
-</Row>
-
-<Row gutter={16}>
-<Col className="gutter-row" span={6}>
-  <div ><h3>
-  Vel. media del viento:</h3></div>
-</Col>
-<Col className="gutter-row" span={6}>
-<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
-</Col>
-
-</Row>
-
-<Row gutter={16}>
-<Col className="gutter-row" span={6}>
-  <div ><h3>
-  Vel. max. del viento:</h3></div>
-</Col>
-<Col className="gutter-row" span={6}>
-<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
-</Col>
-
-</Row>
-
-
-<Row gutter={16}>
-<Col className="gutter-row" span={6}>
-  <div ><h3>
-  Vel. min. del viento:</h3></div>
-</Col>
-<Col className="gutter-row" span={6}>
-<div ><h3>{meteoDates.pressure.toFixed()}</h3></div>
-</Col>
-
-</Row> */
 
 export default MeteoCurrentData;
