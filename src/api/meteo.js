@@ -88,6 +88,30 @@ const getReq = (typeTime, typeQuery, startInterval, endInterval, location) => {
     req = req.concat("&water=0");
   }
 
+  if (typeQuery.water) {
+    req = req.concat("&avg_wind=1");
+  } else {
+    req = req.concat("&avg_wind=0");
+  }
+
+  if (typeQuery.water) {
+    req = req.concat("&max_wind=1");
+  } else {
+    req = req.concat("&max_wind=0");
+  }
+
+  if (typeQuery.water) {
+    req = req.concat("&min_wind=1");
+  } else {
+    req = req.concat("&min_wind=0");
+  }
+
+  if (typeQuery.water) {
+    req = req.concat("&dir_wind=1");
+  } else {
+    req = req.concat("&dir_wind=0");
+  }
+
   if (typeTime.all) {
     req = req.concat("&time=a");
   } else if (typeTime.hour) {
