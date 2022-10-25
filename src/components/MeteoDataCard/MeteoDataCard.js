@@ -39,13 +39,19 @@ const MeteoDataCard = (props) => {
   const [activeTabKey1, setActiveTabKey1] = useState("current");
 
   const contentList = {
-    current: <MeteoCurrentData location={location} />,
+    current: (
+      <MeteoCurrentData
+        location={location}
+        typeTime={typeTime(0, 0, 1, 0, 0, 0)}
+        typeQuery={typeQuery(1, 0, 0, 1, 0, 0, 0, 0)}
+      />
+    ),
     lastHours: (
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 0)}
-        startInterval={Date.now() - 86400000}
-        endInterval={Date.now()}
+        startInterval={new Date(Date.now() - 86400000)}
+        endInterval={new Date(Date.now())}
         location={location}
         tab={activeTabKey1}
       />
@@ -54,8 +60,8 @@ const MeteoDataCard = (props) => {
       <MeteoTableList
         typeTime={typeTime(0, 0, 1, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 0)}
-        startInterval={Date.now() - 2592000000}
-        endInterval={Date.now()}
+        startInterval={new Date(Date.now() - 2592000000)}
+        endInterval={new Date(Date.now())}
         location={location}
         tab={activeTabKey1}
       />
@@ -64,8 +70,8 @@ const MeteoDataCard = (props) => {
       <MeteoTableList
         typeTime={typeTime(0, 0, 0, 0, 1, 0)}
         typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 0)}
-        startInterval={Date.now() - 31536000000}
-        endInterval={Date.now()}
+        startInterval={new Date(Date.now() - 31536000000)}
+        endInterval={new Date(Date.now())}
         location={location}
         tab={activeTabKey1}
       />

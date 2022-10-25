@@ -45,6 +45,8 @@ export function getFilterMeteoApi(
     },
   };
 
+  console.log(url);
+
   return fetch(url, params)
     .then((response) => {
       return response.json();
@@ -88,25 +90,25 @@ const getReq = (typeTime, typeQuery, startInterval, endInterval, location) => {
     req = req.concat("&water=0");
   }
 
-  if (typeQuery.water) {
+  if (typeQuery.avg_wind) {
     req = req.concat("&avg_wind=1");
   } else {
     req = req.concat("&avg_wind=0");
   }
 
-  if (typeQuery.water) {
+  if (typeQuery.max_wind) {
     req = req.concat("&max_wind=1");
   } else {
     req = req.concat("&max_wind=0");
   }
 
-  if (typeQuery.water) {
+  if (typeQuery.min_wind) {
     req = req.concat("&min_wind=1");
   } else {
     req = req.concat("&min_wind=0");
   }
 
-  if (typeQuery.water) {
+  if (typeQuery.dir_wind) {
     req = req.concat("&dir_wind=1");
   } else {
     req = req.concat("&dir_wind=0");
