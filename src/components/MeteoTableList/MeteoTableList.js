@@ -138,6 +138,21 @@ const getColums = (typeTime, typeQuery) => {
     },
   ];
 
+  let water = [
+    {
+      title: "Luvia",
+      dataIndex: "water",
+      key: "water",
+      render: (text) => {
+        return (
+          <h3 className="h3-value">
+            {text.toFixed(1)} l/m<sup>2</sup>
+          </h3>
+        );
+      },
+    },
+  ];
+
   let temp = [
     {
       title: "Temp. media",
@@ -208,17 +223,35 @@ const getColums = (typeTime, typeQuery) => {
     },
   ];
 
-  let water = [
+  let avg_wind = [
     {
-      title: "Lluvia",
-      dataIndex: "water",
-      key: "water",
+      title: "V. viento media",
+      dataIndex: "avg_wind",
+      key: "avg_wind",
       render: (text) => {
-        return (
-          <h3 className="h3-value">
-            {text.toFixed(1) + " l/m"} <sup>2</sup>{" "}
-          </h3>
-        );
+        return <h3 className="h3-value">{text.toFixed() + " km/h"}</h3>;
+      },
+    },
+  ];
+
+  let max_wind = [
+    {
+      title: "V. viento max.",
+      dataIndex: "max_wind",
+      key: "max_wind",
+      render: (text) => {
+        return <h3 className="h3-value">{text.toFixed() + " km/h"}</h3>;
+      },
+    },
+  ];
+
+  let min_wind = [
+    {
+      title: "V. viento min.",
+      dataIndex: "min_wind",
+      key: "min_wind",
+      render: (text) => {
+        return <h3 className="h3-value">{text.toFixed() + " km/h"}</h3>;
       },
     },
   ];
@@ -227,6 +260,14 @@ const getColums = (typeTime, typeQuery) => {
 
   if (typeQuery.temp) {
     columns = columns.concat(temp);
+  }
+
+  if (typeQuery.tempMax) {
+    columns = columns.concat(tempMax);
+  }
+
+  if (typeQuery.tempMin) {
+    columns = columns.concat(tempMin);
   }
 
   if (typeQuery.water) {
@@ -239,6 +280,18 @@ const getColums = (typeTime, typeQuery) => {
 
   if (typeQuery.pressure) {
     columns = columns.concat(pressure);
+  }
+
+  if (typeQuery.avg_wind) {
+    columns = columns.concat(avg_wind);
+  }
+
+  if (typeQuery.max_wind) {
+    columns = columns.concat(max_wind);
+  }
+
+  if (typeQuery.min_wind) {
+    columns = columns.concat(min_wind);
   }
 
   //console.log(JSON.stringify(columns));

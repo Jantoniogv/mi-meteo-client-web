@@ -5,7 +5,7 @@ import MeteoSpin from "../MeteoSpin";
 
 import "./MeteoCurrentData.scss";
 
-import IconTemp from "../../assets/img/icon-temp.png";
+//import IconTemp from "../../assets/img/icon-temp.png";
 
 import { getCurrentMeteoApi, getFilterMeteoApi } from "../../api/meteo";
 

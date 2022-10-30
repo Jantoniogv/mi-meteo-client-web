@@ -43,13 +43,13 @@ const MeteoDataCard = (props) => {
       <MeteoCurrentData
         location={location}
         typeTime={typeTime(0, 0, 1, 0, 0, 0)}
-        typeQuery={typeQuery(0, 0, 0, 1, 0, 0, 0, 0)}
+        typeQuery={typeQuery(0, 0, 0, 0, 0, 1, 0, 0, 0, 0)}
       />
     ),
     lastHours: (
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
-        typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 0)}
+        typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 1, 1, 0)}
         startInterval={new Date(Date.now() - 86400000)}
         endInterval={new Date(Date.now())}
         location={location}
@@ -59,7 +59,7 @@ const MeteoDataCard = (props) => {
     last30Days: (
       <MeteoTableList
         typeTime={typeTime(0, 0, 1, 0, 0, 0)}
-        typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 0)}
+        typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 1, 1, 0)}
         startInterval={new Date(Date.now() - 2592000000)}
         endInterval={new Date(Date.now())}
         location={location}
@@ -69,7 +69,7 @@ const MeteoDataCard = (props) => {
     last12month: (
       <MeteoTableList
         typeTime={typeTime(0, 0, 0, 0, 1, 0)}
-        typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 0)}
+        typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 1, 1, 0)}
         startInterval={new Date(Date.now() - 31536000000)}
         endInterval={new Date(Date.now())}
         location={location}
@@ -125,13 +125,15 @@ const typeTime = (a, h, d, w, m, y) => {
   return timeType;
 };
 
-const typeQuery = (t, h, p, w, aw, min, max, dw) => {
+const typeQuery = (t, tma, tmi, h, p, w, aw, min, max, dw) => {
   let typeQuery = {
     temp: t,
+    tempMax: tma,
+    tempMin: tmi,
     hum: h,
     pressure: p,
     water: w,
-    avg_wind: aw,
+    avgWind: aw,
     min_wind: min,
     max_wind: max,
     dir_wind: dw,
