@@ -6,7 +6,10 @@ import MeteoSpin from "../MeteoSpin";
 
 import "./MeteoTableList.scss";
 
-import IconTemp from "../../assets/img/icon-temp.png";
+import IconTempAvg from "../../assets/img/icon-temp-avg.png";
+import IconTempMax from "../../assets/img/icon-temp-max.png";
+import IconTempMin from "../../assets/img/icon-temp-min.png";
+import IconWater from "../../assets/img/icon-water.png";
 
 import { getFilterMeteoApi } from "../../api/meteo";
 
@@ -145,9 +148,12 @@ const getColums = (typeTime, typeQuery) => {
       key: "water",
       render: (text) => {
         return (
-          <h3 className="h3-value">
-            {text.toFixed(1)} l/m<sup>2</sup>
-          </h3>
+          <span>
+            <img className="icon-temp" src={IconWater} alt="icon temp" />
+            <h3 className="h3-value">
+              {text.toFixed(1)} l/m<sup>2</sup>
+            </h3>
+          </span>
         );
       },
     },
@@ -161,7 +167,7 @@ const getColums = (typeTime, typeQuery) => {
       render: (text) => {
         return (
           <span>
-            <img className="icon-temp" src={IconTemp} alt="icon temp" />
+            <img className="icon-temp" src={IconTempAvg} alt="icon temp" />
             <h3 className="h3-value">{text.toFixed(1) + " ºC"}</h3>{" "}
           </span>
         );
@@ -177,7 +183,7 @@ const getColums = (typeTime, typeQuery) => {
       render: (text) => {
         return (
           <span>
-            <img className="icon-temp" src={IconTemp} alt="icon temp" />
+            <img className="icon-temp" src={IconTempMax} alt="icon temp" />
             <h3 className="h3-value">{text.toFixed(1) + " ºC"}</h3>{" "}
           </span>
         );
@@ -193,7 +199,7 @@ const getColums = (typeTime, typeQuery) => {
       render: (text) => {
         return (
           <span>
-            <img className="icon-temp" src={IconTemp} alt="icon temp" />
+            <img className="icon-temp" src={IconTempMin} alt="icon temp" />
             <h3 className="h3-value">{text.toFixed(1) + " ºC"}</h3>{" "}
           </span>
         );
@@ -203,7 +209,7 @@ const getColums = (typeTime, typeQuery) => {
 
   let hum = [
     {
-      title: "Humedad ambiental",
+      title: "Humedad amb.",
       dataIndex: "hum",
       key: "hum",
       render: (text) => {
@@ -214,7 +220,7 @@ const getColums = (typeTime, typeQuery) => {
 
   let pressure = [
     {
-      title: "Presión atmosferica",
+      title: "Presión atm.",
       dataIndex: "pressure",
       key: "pressure",
       render: (text) => {
