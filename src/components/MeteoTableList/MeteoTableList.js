@@ -258,6 +258,10 @@ const getColums = (typeTime, typeQuery) => {
 
   columns = date;
 
+  if (typeQuery.water) {
+    columns = columns.concat(water);
+  }
+
   if (typeQuery.temp) {
     columns = columns.concat(temp);
   }
@@ -268,10 +272,6 @@ const getColums = (typeTime, typeQuery) => {
 
   if (typeQuery.tempMin) {
     columns = columns.concat(tempMin);
-  }
-
-  if (typeQuery.water) {
-    columns = columns.concat(water);
   }
 
   if (typeQuery.hum) {

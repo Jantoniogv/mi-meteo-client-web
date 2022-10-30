@@ -50,8 +50,8 @@ const MeteoDataCard = (props) => {
       <MeteoTableList
         typeTime={typeTime(0, 1, 0, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 1, 1, 0)}
-        startInterval={new Date(Date.now() - 86400000)}
-        endInterval={new Date(Date.now())}
+        startInterval={new Date(Date.now() - 86400000).toISOString()}
+        endInterval={new Date(Date.now()).toISOString()}
         location={location}
         tab={activeTabKey1}
       />
@@ -60,8 +60,8 @@ const MeteoDataCard = (props) => {
       <MeteoTableList
         typeTime={typeTime(0, 0, 1, 0, 0, 0)}
         typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 1, 1, 0)}
-        startInterval={new Date(Date.now() - 2592000000)}
-        endInterval={new Date(Date.now())}
+        startInterval={new Date(Date.now() - 2592000000).toISOString()}
+        endInterval={new Date(Date.now()).toISOString()}
         location={location}
         tab={activeTabKey1}
       />
@@ -70,8 +70,8 @@ const MeteoDataCard = (props) => {
       <MeteoTableList
         typeTime={typeTime(0, 0, 0, 0, 1, 0)}
         typeQuery={typeQuery(1, 1, 1, 1, 1, 1, 1, 1, 1, 0)}
-        startInterval={new Date(Date.now() - 31536000000)}
-        endInterval={new Date(Date.now())}
+        startInterval={new Date(Date.now() - 31536000000).toISOString()}
+        endInterval={new Date(Date.now()).toISOString()}
         location={location}
         tab={activeTabKey1}
       />
@@ -133,7 +133,7 @@ const typeQuery = (t, tma, tmi, h, p, w, aw, min, max, dw) => {
     hum: h,
     pressure: p,
     water: w,
-    avgWind: aw,
+    avg_wind: aw,
     min_wind: min,
     max_wind: max,
     dir_wind: dw,

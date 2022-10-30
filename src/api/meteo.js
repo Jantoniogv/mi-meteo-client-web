@@ -72,6 +72,18 @@ const getReq = (typeTime, typeQuery, startInterval, endInterval, location) => {
     req = req.concat("temp=0");
   }
 
+  if (typeQuery.tempMax) {
+    req = req.concat("&tempMax=1");
+  } else {
+    req = req.concat("&tempMax=0");
+  }
+
+  if (typeQuery.tempMin) {
+    req = req.concat("&tempMin=1");
+  } else {
+    req = req.concat("&tempMin=0");
+  }
+
   if (typeQuery.hum) {
     req = req.concat("&hum=1");
   } else {
