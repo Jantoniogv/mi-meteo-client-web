@@ -179,7 +179,7 @@ function CurrentData(props) {
           <h3 className="h3-data">Vel. media del viento:</h3>
         </Col>
         <Col span={5}>
-          <h3 className="h3-value">{meteoDates.avg_wind} km/h</h3>
+          <h3 className="h3-value">{meteoDates.avg_wind.toFixed()} km/h</h3>
         </Col>
       </Row>
 
@@ -188,7 +188,7 @@ function CurrentData(props) {
           <h3 className="h3-data">Vel. max. del viento:</h3>
         </Col>
         <Col span={5}>
-          <h3 className="h3-value">{meteoDates.max_wind} km/h</h3>
+          <h3 className="h3-value">{meteoDates.max_wind.toFixed()} km/h</h3>
         </Col>
       </Row>
 
@@ -197,7 +197,7 @@ function CurrentData(props) {
           <h3 className="h3-data">Vel. min. del viento:</h3>
         </Col>
         <Col span={5}>
-          <h3 className="h3-value">{meteoDates.min_wind} km/h</h3>
+          <h3 className="h3-value">{meteoDates.min_wind.toFixed()} km/h</h3>
         </Col>
       </Row>
     </>

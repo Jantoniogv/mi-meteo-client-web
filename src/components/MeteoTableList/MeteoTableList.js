@@ -140,9 +140,41 @@ const getColums = (typeTime, typeQuery) => {
 
   let temp = [
     {
-      title: "Temperatura",
+      title: "Temp. media",
       dataIndex: "temp",
       key: "temp",
+      render: (text) => {
+        return (
+          <span>
+            <img className="icon-temp" src={IconTemp} alt="icon temp" />
+            <h3 className="h3-value">{text.toFixed(1) + " ºC"}</h3>{" "}
+          </span>
+        );
+      },
+    },
+  ];
+
+  let tempMax = [
+    {
+      title: "Temp. max.",
+      dataIndex: "tempMax",
+      key: "tempMax",
+      render: (text) => {
+        return (
+          <span>
+            <img className="icon-temp" src={IconTemp} alt="icon temp" />
+            <h3 className="h3-value">{text.toFixed(1) + " ºC"}</h3>{" "}
+          </span>
+        );
+      },
+    },
+  ];
+
+  let tempMin = [
+    {
+      title: "Temp. min.",
+      dataIndex: "tempMin",
+      key: "tempMin",
       render: (text) => {
         return (
           <span>

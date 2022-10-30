@@ -43,7 +43,7 @@ const MeteoDataCard = (props) => {
       <MeteoCurrentData
         location={location}
         typeTime={typeTime(0, 0, 1, 0, 0, 0)}
-        typeQuery={typeQuery(1, 0, 0, 1, 0, 0, 0, 0)}
+        typeQuery={typeQuery(0, 0, 0, 1, 0, 0, 0, 0)}
       />
     ),
     lastHours: (
