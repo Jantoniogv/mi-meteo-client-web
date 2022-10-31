@@ -22,7 +22,7 @@ export function getCurrentMeteoApi(location) {
     })
     .catch((err) => {
       console.log(err);
-      return err.message;
+      return err;
     });
 }
 

@@ -12,53 +12,34 @@ import { getCurrentMeteoApi, getFilterMeteoApi } from "../../api/meteo";
 const MeteoCurrentData = (props) => {
   const { location, typeTime, typeQuery } = props;
 
-  const [meteoDates, setMeteoDates] = useState([
-    {
-      temp: "load",
-      hum: "load",
-      pressure: "load",
-      water: "load",
-    },
-  ]);
+  const [meteoDates, setMeteoDates] = useState(["load"]);
 
-  const [waterSumDates, setWaterSumDates] = useState([
-    {
-      water: "load",
-    },
-  ]);
+  const [waterSumDates, setWaterSumDates] = useState(["load"]);
+
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
-    const initValue = {
-      temp: "no data",
-      hum: "no data",
-      pressure: "no data",
-      water: "no data",
-    };
     getCurrentMeteoApi(location).then((response) => {
-      if (!response.meteoDates) {
-        console.log(response);
-        setMeteoDates([initValue]);
-      } else {
-        console.log(response.meteoDates);
+      console.log(response);
+
+      if (response.meteoDates) {
         setMeteoDates(response.meteoDates);
+        if (response.meteoDates.length !== 0) {
+          setDate(response.meteoDates[0].date);
+        }
+      } else {
+        setMeteoDates(["error"]);
+        setWaterSumDates(["error"]);
       }
     });
-  }, [location]);
 
-  useEffect(() => {
-    ///////////////////
-
-    if (
-      meteoDates[0].date !== "load" &&
-      meteoDates[0].date !== "no data" &&
-      meteoDates[0].date !== undefined
-    ) {
-      const meteoDate = new Date(meteoDates[0].date).getTime();
+    if (date !== null) {
+      const meteoDate = new Date(date).getTime();
 
       const startInterval = new Date(meteoDate - 86400000).toISOString();
       const endInterval = new Date(meteoDate).toISOString();
 
-      console.log(meteoDates[0].date);
+      //console.log(meteoDates);
 
       console.log(startInterval);
       console.log(endInterval);
@@ -70,29 +51,44 @@ const MeteoCurrentData = (props) => {
         endInterval,
         location
       ).then((response) => {
+        console.log(response);
         if (response.meteoDates) {
-          console.log(response);
           setWaterSumDates(response.meteoDates);
         }
       });
     }
-  }, [meteoDates, typeTime, typeQuery, location]);
+  }, [location, typeTime, typeQuery, date]);
 
   //console.log(meteoDates);
 
   return (
     <div className="sing-in__content-tabs">
-      {waterSumDates[0].water === "load" ? (
-        <MeteoSpin />
-      ) : (
+      {returnComponent(waterSumDates, meteoDates)}
+    </div>
+  );
+};
+
+function returnComponent(waterSumDates, meteoDates) {
+  console.log(meteoDates);
+  if (meteoDates !== undefined || waterSumDates !== undefined) {
+    if (waterSumDates[0] === "load" || meteoDates[0] === "load") {
+      return <MeteoSpin />;
+    } else if (meteoDates.length === 0 || meteoDates[0] === "error") {
+      return <h3>Sin datos</h3>;
+    } else if (waterSumDates.length === 0) {
+      return <CurrentData meteoDates={meteoDates} waterSum={0} />;
+    } else {
+      return (
         <CurrentData
           meteoDates={meteoDates}
           waterSum={waterSumDates[0].water}
         />
-      )}
-    </div>
-  );
-};
+      );
+    }
+  } else {
+    return <h3>Sin datos</h3>;
+  }
+}
 
 function CurrentData(props) {
   const meteoDates = props.meteoDates[0];
