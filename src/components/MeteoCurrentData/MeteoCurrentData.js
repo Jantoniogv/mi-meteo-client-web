@@ -29,7 +29,6 @@ const MeteoCurrentData = (props) => {
         }
       } else {
         setMeteoDates(["error"]);
-        setWaterSumDates(["error"]);
       }
     });
 
@@ -56,6 +55,8 @@ const MeteoCurrentData = (props) => {
           setWaterSumDates(response.meteoDates);
         }
       });
+    } else {
+      setWaterSumDates([]);
     }
   }, [location, typeTime, typeQuery, date]);
 
@@ -70,6 +71,7 @@ const MeteoCurrentData = (props) => {
 
 function returnComponent(waterSumDates, meteoDates) {
   console.log(meteoDates);
+  console.log(waterSumDates);
   if (meteoDates !== undefined || waterSumDates !== undefined) {
     if (waterSumDates[0] === "load" || meteoDates[0] === "load") {
       return <MeteoSpin />;
